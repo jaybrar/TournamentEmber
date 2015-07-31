@@ -1,0 +1,47 @@
+<div class="parallax-container">
+	<div class="parallax">
+		<img src="https://s3-eu-west-1.amazonaws.com/3tags-prod/tag/543316f187282/543316f18cd0d/original.jpg">
+	</div>
+</div>
+<div class="row" id="main">
+	<div class="col s8" id="content">
+		<div class="slider">
+			<ul class="slides">
+				<li>
+					<img src="https://wilk.byu.edu/sites/all/files/pingPong.jpg"> <!-- random image -->
+					<div class="caption center-align">
+						<h3>Ping Pong!</h3>
+						<h5 class="light grey-text text-lighten-3">Come play ping pong.</h5>
+					</div>
+				</li>
+				<li>
+					<img src="http://www.imore.com/sites/imore.com/files/images/stories/2011/09/Stinger-Foosball.jpg"> <!-- random image -->
+					<div class="caption left-align">
+						<h3>Foose Ball</h3>
+						<h5 class="light grey-text text-lighten-3">Just like soccer!</h5>
+					</div>
+				</li>
+				<li>
+					<img src="http://www.kurthahnschool.org/compass/wp-content/uploads/2012/09/chess.jpeg"> <!-- random image -->
+					<div class="caption right-align">
+						<h3>Chess!</h3>
+						<h5 class="light grey-text text-lighten-3">Exercize your brain.</h5>
+					</div>
+				</li>
+			</ul>
+		</div>
+		{{#link-to 'singles' class="waves-effect waves-light btn-large"}}New Singles Tournament{{/link-to}}
+		{{#link-to 'doubles' class="waves-effect waves-light btn-large"}}New Doubles Tournament{{/link-to}}
+		{{#link-to 'tournaments' class="waves-effect waves-light btn-large"}}See Previous Tournaments{{/link-to}}
+	</div>
+</div>
+<div class="parallax-container">
+	<div class="parallax">
+		<img src="http://www.bespokepixels.co.uk/code/parallax/parallax.jpg">
+	</div>
+</div>
+<script>
+$('.parallax').parallax();
+$('.slider').slider({full_width: true});
+</script>
+{{outlet}}

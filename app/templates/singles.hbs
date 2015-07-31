@@ -1,0 +1,19 @@
+<div class="row">
+<h1>singles</h1>
+<p>{{{first}}}</p>
+<div class="col s3">
+	Tournament Name: {{input value=tournament}}
+	Type: {{view "select" content=names}}
+	Number: {{input value=n}}
+	Name: {{input value=name}}
+<button {{action 'generateMap' }}>Generate</button>
+</div>
+<div class='col s12'>
+<div id='test'>
+</div>
+</div>
+</div>
+<script>
+$('select').material_select();
+</script>
+{{outlet}}

@@ -1,0 +1,119 @@
+#main{
+	margin-top: 20px;
+	height: 700px;
+
+}
+nav {
+  background-color: #333;
+}
+#content{
+	margin-left: 200px;
+}
+.slider{
+	margin-bottom: 20px;
+}
+
+#test{
+	margin-top: 20px;
+}
+
+.test0{
+		background-color: silver;
+		width: 100px;
+		height: 20px;
+		margin-bottom: 5px;
+	}
+	.test1{
+		background-color: grey;
+		width: 100px;
+		height: 20px;
+		margin-bottom: 30px;
+	}
+	.test2{
+		background-color: silver;
+		width: 100px;
+		height: 20px;
+		margin-bottom: 80px;
+	}
+	.test3{
+		background-color: grey;
+		width: 100px;
+		height: 20px;
+		margin-bottom: 180px;
+	}
+	.test4{
+		background-color: silver;
+		width: 100px;
+		height: 20px;
+		margin-bottom: 5px;
+		margin-bottom: 400px;
+	}
+	.test5{
+		background-color: grey;
+		width: 100px;
+		height: 20px;
+		margin-bottom: 800px;
+	}
+	.test6{
+		background-color: silver;
+		width: 100px;
+		height: 20px;
+		margin-bottom: 5px;
+	}
+	.test7{
+		background-color: grey;
+		width: 100px;
+		height: 20px;
+		margin-bottom: 5px;
+	}
+	.test8{
+		background-color: silver;
+		width: 100px;
+		height: 20px;
+		margin-bottom: 5px;
+	}
+	.test9{
+		background-color: grey;
+		width: 100px;
+		height: 20px;
+		margin-bottom: 5px;
+	}
+	.rest0{
+		display: inline-block;
+		vertical-align: top;
+	}
+	.rest1{
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 15px;
+	}
+	.rest2{
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 40px;
+
+	}
+	.rest3{
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 80px;
+
+	}
+	.rest4{
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 160px;
+
+	}
+	.rest5{
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 360px;
+
+	}
+	.rest6{
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 730px;
+
+	}
