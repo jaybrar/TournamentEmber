@@ -32,21 +32,21 @@
           ev.preventDefault();
           ev.target.removeChild(ev.target.firstChild);
           var data = ev.dataTransfer.getData("text");
-          var after_id = ev.target.getAttribute("class");
+          var next = ev.target.getAttribute("class");
           ev.target.appendChild(document.getElementById(data).cloneNode(true));
           var id = document.getElementById(data).getAttribute("class");
           var user_id = id.split("|")[0];
-          var before_id = id.split("|")[1];
-          ev.target.firstChild.setAttribute("class", user_id + "|" + after_id);
+          var prev = id.split("|")[1];
+          ev.target.firstChild.setAttribute("class", user_id + "|" + next);
           console.log("id", id);
-          console.log("user_id|before_id", user_id, before_id);
-          console.log("after_id", after_id);
+          console.log("user_id|prev", user_id, prev);
+          console.log("next", next);
           $.post(
           'http://localhost:3000/win',
           {
             'user_id':user_id,
-            'before_id':before_id,
-            'after_id':after_id
+            'prev':prev,
+            'next':next
           },
           function(res) {
             if(res.results) {
