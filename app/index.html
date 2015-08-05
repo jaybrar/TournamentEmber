@@ -19,7 +19,46 @@
 
     <script src="assets/vendor.js"></script>
     <script src="assets/ping-pong.js"></script>
+    <script>
+      function allowDrop(ev) {
+          ev.preventDefault();
+      }
 
+      function drag(ev) {
+          ev.dataTransfer.setData("text", ev.target.id);
+      }
+
+      function drop(ev) {
+          ev.preventDefault();
+          ev.target.removeChild(ev.target.firstChild);
+          var data = ev.dataTransfer.getData("text");
+          var after_id = ev.target.getAttribute("class");
+          ev.target.appendChild(document.getElementById(data).cloneNode(true));
+          var id = document.getElementById(data).getAttribute("class");
+          var user_id = id.split("|")[0];
+          var before_id = id.split("|")[1];
+          ev.target.firstChild.setAttribute("class", user_id + "|" + after_id);
+          console.log("id", id);
+          console.log("user_id|before_id", user_id, before_id);
+          console.log("after_id", after_id);
+          $.post(
+          'http://localhost:3000/win',
+          {
+            'user_id':user_id,
+            'before_id':before_id,
+            'after_id':after_id
+          },
+          function(res) {
+            if(res.results) {
+              console.log(res);
+              } else {
+                console.log("invalid");
+              // self.controller.set('errors', res.errors);
+              }
+            }
+          );
+      }
+    </script>
     {{content-for 'body-footer'}}
   </body>
 </html>

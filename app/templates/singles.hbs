@@ -1,19 +1,22 @@
 <div class="row">
-<h1>singles</h1>
-<p>{{{first}}}</p>
-<div class="col s3">
-	Tournament Name: {{input value=tournament}}
-	Type: {{view "select" content=names}}
-	Number: {{input value=n}}
-	Name: {{input value=name}}
-<button {{action 'generateMap' }}>Generate</button>
+<h4 class="title">Singles</h4>
+	{{errors}}
+<div class="col m3 form">
+	<p>Tournament Name:</p> 
+	{{input value=tournament}}
+	  {{view "select"
+	  	 prompt="Select Type"
+         content=names
+         value=type
+         class="browser-default"
+         }}
+	<p>Name:</p> {{input value=myname}}
+<button class="btn waves-effect waves-light green" {{action 'generateMap' }}>Play</button>
 </div>
-<div class='col s12'>
+<div class='col m12' id="tournament_container">
 <div id='test'>
 </div>
 </div>
 </div>
-<script>
-$('select').material_select();
-</script>
+
 {{outlet}}
