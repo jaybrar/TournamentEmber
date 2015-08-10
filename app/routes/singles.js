@@ -101,7 +101,7 @@ export default Ember.Route.extend({
 			// console.log(participants);
 			// console.log(existing_participants);
 			$.post(
-				'http://localhost:3000/tournaments',
+				'https://tournamentrails.herokuapp.com/tournaments',
 				{
 					'Name':this.controller.get('tournament'),
 					'Game':this.controller.get('type'),
