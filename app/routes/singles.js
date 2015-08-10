@@ -76,9 +76,7 @@ function world(res){
 export default Ember.Route.extend({
 	
 	model: function() {
-		// return $.get("http://localhost:3000/messages", function(res) {
-		// 	console.log(res);
-		// });
+		
 	},
 	setupController: function(controller, model) {
     	controller.set('model', model);

@@ -29,7 +29,7 @@
           var prev = undo[undo.length-1].prev;
           var next = undo[undo.length-1].next;
           $.post(
-            'http://localhost:3000/tournaments/undo',
+            'https://tournamentrails.herokuapp.com/tournaments/undo',
             {
               'user_id':user_id,
               'prev':prev,
@@ -146,7 +146,7 @@
           console.log("user_id|prev", user_id, prev);
           console.log("next", next);
           $.post(
-          'http://localhost:3000/win',
+          'https://tournamentrails.herokuapp.com/win',
           {
             'user_id':user_id,
             'prev':prev,
@@ -170,7 +170,7 @@
           );
       }
       $(document).on('submit', 'form', function() {
-        $.post('http://localhost:3000/tournaments/update_score', $(this).serialize(), function(res){
+        $.post('https://tournamentrails.herokuapp.com/tournaments/update_score', $(this).serialize(), function(res){
               world(res);
             });
             return false;

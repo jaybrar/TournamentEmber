@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 	model: function(params) {
-    $.get("http://localhost:3000/tournaments/" + params.tournament_id,function(res){
+    $.get("https://tournamentrails.herokuapp.com/tournaments/" + params.tournament_id,function(res){
 			$(".title").html("Tournament Name: " + res.results[0].name);
 			var world = document.getElementById('test');
                 var n = res.count;
