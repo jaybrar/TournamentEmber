@@ -1,0 +1,20 @@
+<div class="row">
+<div class="col m5">
+<h4 class="title"></h4>
+</div>
+<div class="col m7" id="winner"></div>
+<div class='col m12' id="tournament_container">
+	<div id='errors'>
+	{{errors}}
+	</div>
+<div id='test'>
+</div>
+</div>
+</div>
+<script>
+$(document).on('click', 'div', function() {
+	$(this).children('form').show();
+	$(this).children('form').css('display', 'inline-block');
+})
+</script>
+

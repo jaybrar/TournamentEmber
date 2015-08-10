@@ -1,7 +1,8 @@
 <div class="row">
-<h4 class="title">Singles</h4>
-	{{errors}}
-<div class="col m3 form">
+<div style="margin-bottom:20px;" class="col m12">
+<h4 class="title">New Tournament</h4>
+</div>
+<div class="col m4 form">
 	<p>Tournament Name:</p> 
 	{{input value=tournament}}
 	  {{view "select"
@@ -10,13 +11,23 @@
          value=type
          class="browser-default"
          }}
-	<p>Name:</p> {{input value=myname}}
-<button class="btn waves-effect waves-light green" {{action 'generateMap' }}>Play</button>
+	<p>Names: (e.g Mike, Jay, Sam&Bill)</p> {{input value=myname}}
+<button class="btn waves-effect waves-purple" {{action 'generateMap' }}>Play</button>
 </div>
+<div class="col m8" id="winner"></div>
 <div class='col m12' id="tournament_container">
+	<div id='errors'>
+	{{errors}}
+	</div>
 <div id='test'>
 </div>
 </div>
 </div>
+<script>
+$(document).on('click', 'div', function() {
+	$(this).children('form').show();
+	$(this).children('form').css('display', 'inline-block');
+})
 
+</script>
 {{outlet}}

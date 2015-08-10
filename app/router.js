@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('home', {path: '/'});
   this.route('doubles');
   this.route('tournaments');
+  this.route('show_tournament', {path: ':tournament_id'});
 });
 
 export default Router;

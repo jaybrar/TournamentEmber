@@ -3,8 +3,20 @@
 	height: 600px;
 
 }
+#win{
+	color: silver;
+	background: linear-gradient(violet, red);
+	box-shadow: 5px 5px 20px #888888;
+    height: 160px;
+    text-align: center;
+    border-radius: 10px;
+}
+#win h3{
+	margin: 0;
+}
 .row{
 	padding-left: 20px;
+	padding-top: 20px;
 }
 nav {
   background-color: #A91A16;
@@ -15,8 +27,19 @@ nav {
 .slider{
 	margin-bottom: 20px;
 }
+.msg{
+	background: red;
+}
+.undo{
+	background: green;
+}
 .title{
-	color: #FFB000;
+	margin: 0;
+	color: silver;
+	background: linear-gradient(violet, red);
+	box-shadow: 5px 5px 20px #888888;
+	border-radius: 5px;
+	display: inline-block;
 }
 .form{
 	border: 2px solid gray;
@@ -30,11 +53,24 @@ nav {
 	height: 20px;
 	margin-bottom: 10px; 
 }
-.form button{
+/*.form button{
 	margin-bottom: 10px;
 	height: 25px;
     line-height: 25px;
     padding: 0 1rem;
+}*/
+table td, th{
+	border: 1px solid grey;
+}
+table{
+	background: #E8E8E8; 
+}
+table th{
+	background: #D8D8D8; 
+}
+tr:hover {
+  background-color: #A91A16;
+  color: white;
 }
 select{
 	background: lightblue;
@@ -43,15 +79,38 @@ select{
 #test{
 	margin-top: 20px;
 }
-.score{
-	width: 10px;
+#score{
+	/*width: 25px;*/
+	/*height: 30px;*/
 	margin: 0;
+	display: none;
+	/*display: inline-block;*/
+}
+#score input{
+	/*border: 2px solid white !important;*/
+	border-radius: 3px;
+	height: 20px;
+	width: 20px;
+	margin: 0;
+	margin-top: 5px;
+	background: lightgrey;
+	color: green;
+}
+#a-score{
 }
 #tournament_container p{
 	margin: 0;
 	color:white;
-	font-size: 15px;
+	font-size: 12px;
 	text-align: center;
+	display: inline-block;
+	width: 125px;
+}
+button{
+	margin-bottom: 20px;
+	background: linear-gradient(yellow, orange);
+	border-radius: 5px;
+	color: black !important;
 }
 .round0 div{
 	background: linear-gradient(blue, grey);

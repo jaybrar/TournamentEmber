@@ -20,6 +20,108 @@
     <script src="assets/vendor.js"></script>
     <script src="assets/ping-pong.js"></script>
     <script>
+      var undo = [];
+      function undoDrag(){
+        console.log(undo);
+        if(undo.length>0){
+          document.getElementById("winner").innerHTML = "";
+          var user_id = undo[undo.length-1].user_id;
+          var prev = undo[undo.length-1].prev;
+          var next = undo[undo.length-1].next;
+          $.post(
+            'http://localhost:3000/tournaments/undo',
+            {
+              'user_id':user_id,
+              'prev':prev,
+              'next':next
+            },
+            function(res) {
+              if(res.results) {
+                  undo.pop();
+                  console.log(res);
+                  world(res);
+                  } else {
+                    self.controller.set('errors', res.errors);
+                  }
+              }
+            );
+        }else{
+            // alert("nothing to undo");
+            Materialize.toast('nothing to undo', 2000, 'green');
+        }
+      }
+      function world(res){
+          var world = document.getElementById('test');
+                var n = res.count;
+                // var res_id = [];
+                var count = 0;
+                var x = Math.log2(n) + 1;
+                var str = '<button class="btn waves-effect" id="undo_button" onclick="undoDrag()">Undo Drag</button><br>'
+                var arr = [];
+                var player_id = [];
+                var player_rating = [];
+                var player_score = [];
+                var seed = [];
+                for(var i=0; i<res.results.length;i++){
+                  if(res.results[i].Player_1_score != null){
+                    player_score.push(res.results[i].Player_1_score);
+                  }else{
+                    player_score.push("");
+                  }
+                  if(res.results[i].Player_2_score != null){
+                    player_score.push(res.results[i].Player_2_score);
+                  }else{
+                    player_score.push("");
+                  }
+                }
+                for(var i=0; i<res.results.length;i++){
+                  if(res.results[i].Player_1A_name != null){
+                  arr.push(res.results[i].Player_1A_name);
+                  player_id.push(res.results[i].Player_1A_id + '|' + res.results[i].results_id);
+                  player_rating.push(res.results[i].Player_1A_rating);
+                  seed.push(res.results[i].low_seed);
+                  }else{
+                  arr.push('');
+                  player_rating.push('');
+                  seed.push('');
+                  player_id.push('');
+                  }
+                  if(res.results[i].Player_2A_name != null){
+                  arr.push(res.results[i].Player_2A_name);
+                  player_id.push(res.results[i].Player_2A_id + '|' + res.results[i].results_id);
+                  player_rating.push(res.results[i].Player_2A_rating);
+                  seed.push(res.results[i].high_seed);
+                  }else{
+                  arr.push('');
+                  player_rating.push('');
+                  seed.push('');
+                  player_id.push('');
+                  }
+                }
+                console.log("player rating", player_rating);
+                console.log("players", arr);
+                console.log("ids", player_id);
+                for(var i = 0; i < x; i++) {
+                  
+                  str += '<div class=' + 'round'+i + '>';
+                  // console.log(i);
+                  for(var j=0;j<n;j++){
+                          count ++
+                      if(arr[count-1] == ''){
+                       str += '<div ondrop="drop(event)" ondragover="allowDrop(event)" id=' + 'player'+i + ' class="'+res.results[Math.floor((count-1)/2)].results_id+ '"></div>';
+                      }else{
+                       str += '<div id="player'+i + '" class="'+res.results[Math.floor((count-1)/2)].results_id+ '"><p id="drag'+count+ '" draggable="true" ondragstart="drag(event)" class="'+player_id[count-1]+ '"><span id="a-score">'+player_score[count-1] + ' </span><span id="b-name">' + arr[count-1] + ' (' + player_rating[count-1] + ') </span><span id="b-name">s:' + seed[count-1] +'</span></p><form id="score"><input id="number" name="score" type="text" /><input id="score-user-id" name="user_id" type="hidden" value="'+player_id[count-1]+'"/></form></div>';
+                          }
+                      }
+                      str += '</div>';
+                      n = n/2
+                      
+                }
+                world.innerHTML = str;
+                  if(res.results[res.results.length-1].Player_1A_name){
+                    document.getElementById("winner").innerHTML = "<div id='win'><h3>Congratulations! " + res.results[res.results.length-1].Player_1A_name + "</h3></div>";
+                  }
+      }
       function allowDrop(ev) {
           ev.preventDefault();
       }
@@ -30,11 +132,13 @@
 
       function drop(ev) {
           ev.preventDefault();
-          ev.target.removeChild(ev.target.firstChild);
           var data = ev.dataTransfer.getData("text");
           var next = ev.target.getAttribute("class");
-          ev.target.appendChild(document.getElementById(data).cloneNode(true));
+          // ev.target.appendChild(document.getElementById(data).cloneNode(true));
+          // ev.target.innerHTML = "";
+          ev.target.appendChild(document.getElementById(data));
           var id = document.getElementById(data).getAttribute("class");
+          // var id = ev.target.firstChild.getAttribute("class");
           var user_id = id.split("|")[0];
           var prev = id.split("|")[1];
           ev.target.firstChild.setAttribute("class", user_id + "|" + next);
@@ -50,14 +154,27 @@
           },
           function(res) {
             if(res.results) {
-              console.log(res);
-              } else {
-                console.log("invalid");
-              // self.controller.set('errors', res.errors);
+                console.log(res);
+                $('#errors').html("");
+                world(res);
+                } else {
+                  self.controller.set('errors', "no response from server");
+                }
+            if(!res.error){
+              undo.push({user_id: user_id, prev: prev, next: next});
+              }else{
+              // $('#errors').html("<h3 style='color:red'>" + res.error + "</h3>");
+              Materialize.toast(res.error, 2000, 'msg');
               }
             }
           );
       }
+      $(document).on('submit', 'form', function() {
+        $.post('http://localhost:3000/tournaments/update_score', $(this).serialize(), function(res){
+              world(res);
+            });
+            return false;
+      })
     </script>
     {{content-for 'body-footer'}}
   </body>
