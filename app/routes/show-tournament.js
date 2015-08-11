@@ -51,13 +51,10 @@ export default Ember.Route.extend({
                   player_id.push('');
                   }
                 }
-                console.log("player rating", player_rating);
-                console.log("players", arr);
-                console.log("ids", player_id);
+                
                 for(var i = 0; i < x; i++) {
                   
                   str += '<div class=' + 'round'+i + '>';
-                  // console.log(i);
                   for(var j=0;j<n;j++){
                           count ++
                       if(arr[count-1] == ''){

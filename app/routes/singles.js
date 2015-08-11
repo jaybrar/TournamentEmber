@@ -48,15 +48,10 @@ function world(res){
       player_id.push('');
       }
     }
-    console.log("player rating", player_rating);
-    console.log("players", arr);
-    console.log("ids", player_id);
     for(var i = 0; i < x; i++) {
       
       str += '<div class=' + 'round'+i + '>';
-      // console.log(i);
       for(var j=0;j<n;j++){
-              console.log('count', count);
               count ++
       if(arr[count-1] == ''){
        str += '<div ondrop="drop(event)" ondragover="allowDrop(event)" id=' + 'player'+i + ' class="'+res.results[Math.floor((count-1)/2)].results_id+ '"></div>';
@@ -95,9 +90,6 @@ export default Ember.Route.extend({
 				participants.push(arr[i].trim());
 				existing_participants.push('');
 			}
-			// console.log(arr);
-			// console.log(participants);
-			// console.log(existing_participants);
 			$.post(
 				'https://tournamentrails.herokuapp.com/tournaments',
 				{
@@ -109,7 +101,6 @@ export default Ember.Route.extend({
 				},
 				function(res) {
 					if(res.results) {
-		            console.log(res);
 		            world(res);
 			          } else {
 			            self.controller.set('errors', res.errors);

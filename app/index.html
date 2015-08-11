@@ -22,7 +22,6 @@
     <script>
       var undo = [];
       function undoDrag(){
-        console.log(undo);
         if(undo.length>0){
           document.getElementById("winner").innerHTML = "";
           var user_id = undo[undo.length-1].user_id;
@@ -38,7 +37,6 @@
             function(res) {
               if(res.results) {
                   undo.pop();
-                  console.log(res);
                   world(res);
                   } else {
                     self.controller.set('errors', res.errors);
@@ -98,13 +96,9 @@
                   player_id.push('');
                   }
                 }
-                console.log("player rating", player_rating);
-                console.log("players", arr);
-                console.log("ids", player_id);
                 for(var i = 0; i < x; i++) {
                   
                   str += '<div class=' + 'round'+i + '>';
-                  // console.log(i);
                   for(var j=0;j<n;j++){
                           count ++
                       if(arr[count-1] == ''){
@@ -142,9 +136,6 @@
           var user_id = id.split("|")[0];
           var prev = id.split("|")[1];
           ev.target.firstChild.setAttribute("class", user_id + "|" + next);
-          console.log("id", id);
-          console.log("user_id|prev", user_id, prev);
-          console.log("next", next);
           $.post(
           'https://tournamentrails.herokuapp.com/win',
           {
@@ -154,7 +145,6 @@
           },
           function(res) {
             if(res.results) {
-                console.log(res);
                 $('#errors').html("");
                 world(res);
                 } else {
